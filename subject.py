@@ -1,12 +1,15 @@
 class Subject(object):
 	"""Class represents a single school subject"""
 	def __init__(self, name, teacher_name):
+		"""Default init method"""		
 		self.name = name
 		self.teacher_name = teacher_name
 
 	def __str__(self):
+		"""To string method"""		
         	return self.name + " (" + self.teacher_name + ")"
 		
+	"""Getter & setter methods"""
 	@property
 	def name(self):
 		return self.__name

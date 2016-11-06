@@ -10,6 +10,10 @@ class Student(object):
 		self.grades = {}
 		self.attendance = {}
 
+	def __str__(self):
+		"""To string method"""
+        	return self.first_name + " " + self.last_name
+
 	def assign_classes(self, classes):
 		"""Assigns a list of classes to the specific student.
 		In case he already has some, the new one will be appended
@@ -63,7 +67,7 @@ class Student(object):
 		else:
 			print("No such subject: " + subject + ".\nPick one from below\n")
 			self.print_classes()
-			return
+		return self
 				
 	def compute_subject_average(self, subject):
 		"""Computes average grade of a specific subject"""
@@ -78,7 +82,7 @@ class Student(object):
 		else:
 			print("No such subject: " + subject + ".\nPick one from below\n")
 			self.print_classes()
-			return
+		return self
 	
 	def compute_total_average(self):
 		"""Computes average grade of all student's subjects"""
@@ -89,23 +93,31 @@ class Student(object):
 			for y in self.grades[x]:
 				total_avg += y
 				counter += 1
-		print("Average (total) is: " + str(total_avg/counter))	
+		if counter!= 0:
+			print("Average (total) is: " + str(total_avg/counter))	
+		return self
 	
 	def print_classes(self):
 		"""Prints student's classes"""
 		print("Subject list:")
-		print("\n".join(str(p) for p in self.classes)) 
+		print("\n".join(str(p) for p in self.classes))
+		return self 
 
 	def print_grades(self):
 		"""Prints student's grades"""
+		print("\nGrades of:")
+		print(self)
 		for i in self.grades:
-			print(i + ", grades:")
+			print(i + ": ")
 			for y in self.grades[i]:
 				print(y)
+		return self
 	def print_attendance(self):
 		"""Prints student's attendance"""
+		print("\nAttendance:")
 		for i in self.attendance:
-			print(i + ", attendance: " + str(self.attendance[i]))
+			print(i + ": " + str(self.attendance[i]))
+		return self
 	
 	"""Getter & setter methods"""
 	@property

@@ -24,17 +24,33 @@ from diary import Diary
 sub1 = Subject("Matematyka", "prof. Kwiatkowski")
 sub2 = Subject("J. polski", "prof. Nowak")
 sub3 = Subject("Biologia", "prof. Kowalski")
+sub4 = Subject("Historia", "prof. Kot") 
+sub5 = Subject("WF", "prof. Szybki") 
 
-stud1 = Student("Kamil", "Potoczny")
-sub_list = [sub1, sub2, sub3]
-stud1.assign_classes(sub_list)
+
+stud1 = Student("Adam", "Abacki")
+stud2 = Student("Bartosz", "Babacki")
+stud3 = Student("Cezary", "Cabacki")
+	
+stud1.assign_classes([sub1, sub2, sub3])
+stud2.assign_classes([sub1, sub2, sub3, sub4, sub5])
+stud3.assign_classes([sub1, sub5])
 
 stud1.assign_grades("Biologia", [3.0, 4.0, 5.0])
-stud1.assign_grades("Kappa", [3.0, 4.0, 5.0])
+stud1.assign_grades("Matematyka", [2.5, 3.0, 4.5])
 
-stud1.print_grades()
-stud1.compute_subject_average("Biologia")
-stud1.compute_total_average()
+stud2.assign_grades("Historia", [3.0, 4.0, 5.0])
+stud2.assign_grades("WF", [2.5, 3.0, 4.5])
+
+stud3.assign_grades("Matematyka", [3.0, 4.0, 5.0])
+
+diary = Diary("High school", "2016/2017")
+diary.append_students([stud1, stud2, stud3])
+diary.print_students()
+
+diary.get_student("Adam", "Abacki").compute_total_average().compute_subject_average("Biologia").increment_attendance("Biologia", 5).print_attendance()
+
+
 
 
 
