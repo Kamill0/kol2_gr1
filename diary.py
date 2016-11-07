@@ -8,7 +8,6 @@ class Diary(object):
 		self.school_name = school_name
 		self.year = year			
 		self.students = students
-		print(self)
 
 	def __str__(self):
 		"""To string method"""

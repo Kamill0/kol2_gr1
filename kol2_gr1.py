@@ -19,6 +19,7 @@
 from subject import Subject
 from student import Student
 from diary import Diary
+import re
 
 """
 sub1 = Subject("Matematyka", "prof. Kwiatkowski")
@@ -56,6 +57,9 @@ classes = []
 ans = True
 ans2 = True
 while ans:
+	print("\n*******************************\nMain Menu - ")
+	print(diary)
+	print("*******************************\n")
 	print("""
 	1. Add a student
 	2. Add a subject
@@ -64,6 +68,7 @@ while ans:
 	5. Exit 
 	""")
 	ans=raw_input("What would You like to do? ")
+	print("*******************************\n")
 	if ans=="1":
 		print("Adding a student:\n")
 		first_name=raw_input("Enter first name: ")
@@ -95,6 +100,9 @@ while ans:
 			if stud:
 				ans2=True
 				while ans2:
+					print("\n*******************************\nStudent Menu - ")
+					print(stud)
+					print("*******************************\n")
 					print("""
 					1. Assign classes
 					2. Assign grades
@@ -107,13 +115,16 @@ while ans:
 					9. Return to previous menu
 					""")
 					ans2=raw_input("What would You like to do? ")
+					print("*************************\n")
 					if ans2=="1":
 						stud.assign_classes(classes)
 						print("Successfully assigned!\n")
 					elif ans2=="2":
-						example_grades = [2.5, 3.0, 4.0, 3.5]
-						name=raw_input("Enter subject name: ")
-						stud.assign_grades(name, example_grades)
+						#example_grades = [2.5, 3.0, 4.0, 3.5]
+						name = raw_input("Enter subject name: ")
+						grades = raw_input("Enter grades separated by a whitespace: ")
+						processed_grades = [float(i) for i in re.findall(r"[+]?\d*\.\d+|\d+", grades)]
+						stud.assign_grades(name, processed_grades)
 					elif ans2=="3":
 						stud.compute_total_average()
 					elif ans2=="4":
