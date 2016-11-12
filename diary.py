@@ -27,6 +27,7 @@ class Diary(object):
         	return self.school_name + ", year of: " + self.year + "\n"
 
 	def __save_and_update(self):
+		"""Saves new JSON content and refreshes students entity"""
 		json.dump(self.json_data, open(self.filename,"w"))
 		self.students = self.__load_data(self.filename)
 
@@ -49,6 +50,7 @@ class Diary(object):
 		self.__save_and_update()
 
 	def delete_student(self):
+		"""Deletes student"""
 		try:		
 			del self.json_data[raw_input("Enter student's name: ")]
 			self.__save_and_update()
@@ -95,6 +97,7 @@ class Diary(object):
 				print("No such option\n")
 		
 	def get_student(self, student):
+		"""Returns student"""
 		return next((s for s in self.students if s.name == student), None)
 
 	def print_students(self):
